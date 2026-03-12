@@ -1,20 +1,90 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Maya AI Web App
 
-# Run and deploy your AI Studio app
+Vite + React dashboard for monitoring and managing community-reported issues.
 
-This contains everything you need to run your app locally.
+## Features
+- Public landing page (`/`)
+- Admin dashboard (`/dashboard`)
+- Map view (`/map`)
+- Issue list (`/issues`)
+- Issue details (`/issues/:id`)
+- Analytics (`/analytics`)
+- Live data from the backend API
 
-View your app in AI Studio: https://ai.studio/apps/aad48dd5-1b8f-44e1-95b0-40e17e7b9273
+## Tech Stack
+- React + TypeScript
+- Vite
+- React Router
+- Tailwind CSS
 
-## Run Locally
+## Prerequisites
+- Node.js 18+
+- npm (or bun)
 
-**Prerequisites:**  Node.js
+## Setup
+From `web/`:
 
+```bash
+npm install
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Create env file:
+```bash
+cp .env.example .env
+```
+
+Set:
+- `VITE_API_BASE_URL` (default backend currently used: `https://scroll-backend-latest.onrender.com`)
+
+## Run
+Development:
+```bash
+npm run dev
+```
+
+Build:
+```bash
+npm run build
+```
+
+Preview production build:
+```bash
+npm run preview
+```
+
+Typecheck:
+```bash
+npm run lint
+```
+
+## API Integration
+API client is in:
+- `src/lib/api.ts`
+
+It calls:
+- `GET /stats`
+- `GET /feed`
+- `GET /issues`
+- `GET /issue/{id}`
+- `PATCH /issue/{id}`
+
+## Project Structure
+```text
+web/
+  src/
+    components/
+      Header.tsx
+      Sidebar.tsx
+    pages/
+      Landing.tsx
+      Dashboard.tsx
+      MapView.tsx
+      IssueList.tsx
+      IssueDetails.tsx
+      Analytics.tsx
+    lib/api.ts
+```
+
+## Notes
+- Keep `.env` files out of git.
+- If backend URL changes, update `VITE_API_BASE_URL`.
